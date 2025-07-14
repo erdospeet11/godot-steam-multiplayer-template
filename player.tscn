@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwxv2jk8gj7yp"]
+
+[ext_resource type="Script" uid="uid://g8sw2428ax0c" path="res://player.gd" id="1_h4d8m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1h7q4"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_h4d8m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_1h7q4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+fov = 90.0
+
+[node name="FlashLight" type="SpotLight3D" parent="Camera3D"]
+light_color = Color(1, 0.95, 0.8, 1)
+spot_range = 10.0
+spot_angle_attenuation = 2.0
+
+[node name="ItemHolder" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.3, -0.8)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HealthContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -140.0
+offset_right = 320.0
+offset_bottom = -100.0
+grow_vertical = 0
+
+[node name="HealthLabel" type="Label" parent="UI/HealthContainer"]
+layout_mode = 2
+text = "Health"
+
+[node name="HealthBar" type="ProgressBar" parent="UI/HealthContainer"]
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="StaminaContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -80.0
+offset_right = 320.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="StaminaLabel" type="Label" parent="UI/StaminaContainer"]
+layout_mode = 2
+text = "Stamina"
+
+[node name="StaminaBar" type="ProgressBar" parent="UI/StaminaContainer"]
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="StanceIndicator" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "Standing"
+horizontal_alignment = 2
+
+[node name="UI_CrosshairContainer#Crosshair" type="Label" parent="."]
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryManager" type="Node" parent="."]

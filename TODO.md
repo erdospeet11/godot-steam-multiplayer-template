@@ -1,1 +1,3 @@
 - [ ] create a menu where a player can click
+- [ ] create a 3d game-manager
+- [ ] create a gamemo-mode-manager
